@@ -1,19 +1,20 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Student } from './student';
-import { StudentService } from './student.service';
+import { environment } from 'src/environments/environment';
+import { Student } from '../student';
+import { StudentService } from '../student.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'front-end';
+export class HomeComponent implements OnInit {
   public students!:Student[];
 
-  constructor(private studentService:StudentService,private router :Router){}
+  private apiServerUrl = environment.apiBaseUrl;
+  constructor(private studentService:StudentService, private router:Router,private http:HttpClient){}
 
   ngOnInit(){
     this.getStudents();
@@ -23,16 +24,30 @@ export class AppComponent implements OnInit{
     this.studentService.getStudents().subscribe(
       (response:Student[]) => {
         this.students = response;
+        console.log("testing stuff")
       },
       (error :HttpErrorResponse) => {
         alert(error.message);
       }
     )
   }
+
   goToPage(pageName:string):void{
     this.router.navigate([`${pageName}`]);
 }
+editStudent(studentId:number):void{
+  this.router.navigate([`edit/${studentId}`]);
 
+}
+
+deleteStudent(studentId:number):void{
+  console.log( `will be delted` + `${studentId}`);
+  this.http.delete(`${this.apiServerUrl}/student/delete/`+`${studentId}`).subscribe((result:any)=>{
+    window.location.reload();
+  });;
+    this.router.navigate(['']);
+    
+}
 
 
   public onOpenModal(student: Student|null, mode: string): void {
@@ -55,11 +70,5 @@ export class AppComponent implements OnInit{
       container?.appendChild(button);
       button.click();
   }
-
-
-
-
-
-
 
 }

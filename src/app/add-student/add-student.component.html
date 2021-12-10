@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a (click)="goToPage('home')" class="navbar-brand" style="color:white;">Student Manager</a>
+  <button  (click)="goToPage('add')" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#addStudentModal" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+     <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+           <a class="nav-link" >Add Student <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+         <a (click)="goToPage('department')" class="nav-link" >departments <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+         <a (click)="goToPage('addDepartment')" class="nav-link" >add departments <span class="sr-only">(current)</span></a>
+      </li>
+     </ul>
+   
+  </div>
+</nav>
+
+
+<form #addStudentForm="ngForm" (ngSubmit)="onSubmit(addStudentForm.value)">
+
+<div class="form-group">
+
+   <label for="name"> Enter name</label>
+    <input required id="name" type="text" ngModel name="name"  #name="ngModel" (change)="log(name)" placeholder="insert student name" maxlength="25" minlength="3" class="form-control">
+   <div class= "alert alert-danger" *ngIf="name.touched && !name.valid">
+      <div *ngIf="name.errors"> Name must be bettwen 3 and 25 characters</div>
+   </div>
+   </div>
+
+
+   <div class="form-group">
+
+    <label>student anual grade:</label>
+    <input type="number" ngModel name="studentAnnualGrade"  #studentAnnualGrade="ngModel" required placeholder="insert student grade" min="1" max="10">
+    <div class= "alert alert-danger" *ngIf="studentAnnualGrade.touched && !studentAnnualGrade.valid">
+      <div *ngIf="studentAnnualGrade.errors">Anual grade must be between 1 and 10</div>
+   </div>
+    <br><br>
+    
+
+   </div>
+
+    <label for="cars">Choose a department:</label>
+
+    <select type="text" ngModel name="studentDegree" >
+         <option *ngFor="let depName of listOfDepartments" value="{{depName}}">{{depName}}</option>
+    </select>
+
+    <br><br>
+    <div class="form-group">
+
+      <label>student year of study:</label>
+    <input type="number"  ngModel name="yearOfStudy" #yearOfStudy="ngModel" required placeholder="insert student year Of Study" min="1" max="4">
+    <div class= "alert alert-danger" *ngIf="yearOfStudy.touched && !yearOfStudy.valid">
+      <div *ngIf="yearOfStudy.errors">Student year of study must be bettwen 1 and 4</div>
+
+      </div>
+    </div>
+
+    <br><br>
+    <div class="form-group">
+
+    <label>student phone number:</label>
+    <input type="text" ngModel name="studentPhoneNumber" #studentPhoneNumber="ngModel" required maxlength="10" minlength="10" placeholder="insert student phone number">
+    <div class= "alert alert-danger" *ngIf="studentPhoneNumber.touched && !studentPhoneNumber.valid">
+      <div *ngIf="studentPhoneNumber.errors">Student phone number must be 10 characters </div>
+
+      </div>
+   </div>
+
+    <br><br>
+    <div class="form-group">
+
+      <label>student phone number:</label>
+    <input type="text" ngModel name="studentEmail" #studentEmail="ngModel" required maxlength="30" placeholder="insert student email">
+    <div class= "alert alert-danger" *ngIf="studentEmail.touched && !studentEmail.valid">
+      <div *ngIf="studentEmail.errors">Student email must be not null and have a maximum lenght of 30 </div>
+
+      </div>
+    </div>
+
+
+    <br><br>
+    <button [disabled]="!(name.valid && yearOfStudy.valid && studentAnnualGrade.valid && studentEmail.valid)" class="btn btn-primary" type="submit" >Insert Student</button>
+
+   
+</form>

@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a (click)="goToPage('home')" class="navbar-brand" style="color:white;">Student Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#addStudentModal" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+       <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+             <a (click)="goToPage('add')" class="nav-link" >Add Student <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a (click)="goToPage('department')" class="nav-link" >departments <span class="sr-only">(current)</span></a>
+         </li>
+         <li class="nav-item active">
+            <a (click)="goToPage('addDepartment')" class="nav-link" >add departments <span class="sr-only">(current)</span></a>
+         </li>
+       </ul>
+     
+    </div>
+  </nav>
+
+  <div *ngFor="let dep of departments">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container" width="2550px">
+        
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{dep.name}}</h6>
+                        <h2 class="text-right"><i class="fa fa-book f-left"></i><span> grade :{{dep.requiredGrade}}</span></h2>
+                        
+                        <p class="m-b-0"> {{dep.listOfSubjects}}<span class="f-right"></span></p>
+
+                        <p>yearOfStudy :{{dep.yearsOfStudy}}</p>
+                        <div class="float-right btn-group btn-group-sm">
+                            <a  (click)="deleteDepartment(dep.id)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+    
+       
+    </div>
+    
+  </div>
+
+  //https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_select cy asta te ajuta maine la DROPDOWN

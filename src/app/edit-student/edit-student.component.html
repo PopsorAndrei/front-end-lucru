@@ -1,0 +1,47 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a (click)="goToPage('home')" class="navbar-brand" style="color:white;">Student Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#addStudentModal" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+     <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+           <a (click)="goToPage('add')" class="nav-link" >Add Student <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+         <a (click)="goToPage('department')" class="nav-link" >departments <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+         <a (click)="goToPage('addDepartment')" class="nav-link" >add departments <span class="sr-only">(current)</span></a>
+      </li>
+     </ul>
+   
+  </div>
+</nav>
+<br>
+<br>
+<div class="form" alignment="align-self-center">
+<form #editStudentForm="ngForm" (ngSubmit)="onSubmit(editStudentForm.value)" >
+
+   <input type="text" [(ngModel)]="studentToBeUpdated.name" name="name" placeholder="insert student name">
+   <br><br>
+   <input type="number" [(ngModel)]="studentToBeUpdated.studentAnnualGrade" name="studentAnnualGrade" placeholder="insert student grade">
+   <br><br>
+   <p class="modal-title" >
+       AICI TREBE UN DROPDOWN CU PROFILELE DIN AILANTA BAZA DE DATE
+   </p>
+   <input type="text" [(ngModel)]="studentToBeUpdated.studentDegree" name="studentDegree" placeholder="insert student degree">
+   <br><br>
+   <input type="number"  [(ngModel)]="studentToBeUpdated.yearOfStudy" name="yearOfStudy" placeholder="insert student year Of Study">
+   <br><br>
+   <input type="text" [(ngModel)]="studentToBeUpdated.studentPhoneNumber" name="studentPhoneNumber" placeholder="insert student phone number">
+   <br><br>
+   <input type="text" [(ngModel)]="studentToBeUpdated.studentEmail" name="studentEmail" placeholder="insert student email">
+   <br><br>
+   <button type="submit" >Insert Student</button>
+
+</form>
+</div>

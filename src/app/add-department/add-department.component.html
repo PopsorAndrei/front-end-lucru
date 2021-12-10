@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a (click)="goToPage('home')" class="navbar-brand" style="color:white;">Student Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#addStudentModal" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+       <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+             <a (click)="goToPage('add')" class="nav-link" >Add Student <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a (click)="goToPage('department')" class="nav-link" >departments <span class="sr-only">(current)</span></a>
+         </li>
+         <li class="nav-item active">
+            <a (click)="goToPage('addDepartment')" class="nav-link" >add departments <span class="sr-only">(current)</span></a>
+         </li>
+       </ul>
+     
+    </div>
+  </nav>
+
+  <!-- <div class="form-group">
+
+    <label>student year of study:</label>
+  <input type="number"  ngModel name="yearOfStudy" #yearOfStudy="ngModel" required placeholder="insert student year Of Study" min="1" max="4">
+  <div class= "alert alert-danger" *ngIf="yearOfStudy.touched && !yearOfStudy.valid">
+    <div *ngIf="yearOfStudy.errors">Student year of study must be bettwen 1 and 4</div>
+
+    </div>
+  </div> -->
+
+  <form #addDepartmentForm="ngForm" (ngSubmit)="onSubmit(addDepartmentForm.value)">
+
+    <div class="form-group">
+
+        <label>student year of study</label>
+    <input type="text" ngModel name="name" #name="ngModel" required placeholder="insert department name" minlength="3" maxlength="20" >
+    <div class= "alert alert-danger" *ngIf="name.touched && !name.valid">
+        <div *ngIf="name.errors">department dame must be between 3 and 20 characters</div>
+        </div>
+
+    </div>
+    <br><br>
+
+    <div class="form-group">
+
+        <label>student required grade</label>
+
+    <input type="number" ngModel name="requiredGrade"  #requiredGrade="ngModel" required placeholder="insert student degree" min="1" max="10">
+    <div class= "alert alert-danger" *ngIf="requiredGrade.touched && !requiredGrade.valid">
+        <div *ngIf="requiredGrade.errors">required greade must be bettwen 1 and 10 </div>
+        </div>
+
+    </div>
+
+
+    <br><br>
+
+    <div class="form-group">
+    <label>student required grade</label>
+    <input type="number"  ngModel name="yearsOfStudy" #yearsOfStudy="ngModel" required placeholder="insert student year Of Study" min="1" max="10">
+    <div class= "alert alert-danger" *ngIf="yearsOfStudy.touched && !requiredGrade.valid">
+        <div *ngIf="yearsOfStudy.errors">years of study must be betwen 1 and 10 </div>
+        </div>
+    </div>
+
+
+    <br><br>
+    <div class="form-group">
+        <label>list Of Subjects</label>
+    <input type="text" ngModel name="listOfSubjects" #listOfSubjects="ngModel" required placeholder="insert all the subjecs" minlength="5" maxlength="100">
+    <div class= "alert alert-danger" *ngIf="listOfSubjects.touched && !listOfSubjects.valid">
+        <div *ngIf="listOfSubjects.errors">list of subject must be between 5 and 100 chartacters </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <button [disabled]="!(name.valid && requiredGrade.valid && yearsOfStudy.valid && listOfSubjects.valid)" type="submit" >Insert Student</button>
+
+</form>
